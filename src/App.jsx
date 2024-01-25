@@ -1,6 +1,6 @@
 import Footer from "./Footer";
 import Heder from "./Heder";
-import Hero from "./Hero";
+import HeroSection from "./HeroSection";
 import TaskBord from "./Task/TaskBord";
 
 const App = () => {
@@ -8,7 +8,7 @@ const App = () => {
     <>
       <Heder />
       <div className="flex flex-col justify-center items-center">
-        <Hero />
+        <HeroSection />
         <TaskBord />
       </div>
       <Footer />
