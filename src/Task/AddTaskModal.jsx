@@ -1,30 +1,6 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
 
-export default function AddTaskModal({ onSave }) {
-  const [task, setTask] = useState({
-    title: "",
-    description: "",
-    tags: [],
-    priority: "",
-    isFavorite: false,
-  });
-
-  const handleChange = (evt) => {
-    evt.preventDefault();
-    const name = evt.target.name;
-    console.log(name);
-    let value = evt.target.value;
-    // console.log(value);
-    if (name === "tags") {
-      value = value.split(",");
-    }
-    setTask({
-      ...task,
-      [name]: value,
-    });
-  };
-
+export default function AddTaskModal() {
   return (
     <>
       <div className="bg-black bg-opacity-70 h-full w-full -z-10 absolute top-0 left-0"></div>
@@ -34,15 +10,7 @@ export default function AddTaskModal({ onSave }) {
         <div className="space-y-9 text-white lg:space-y-10">
           <div className="space-y-2 lg:space-y-3">
             <label htmlFor="title">Title</label>
-            <input
-              className="block w-full rounded-md bg-[#2D323F] px-3 py-2.5"
-              type="text"
-              name="title"
-              id="title"
-              value={task.title}
-              onChange={handleChange}
-              required
-            />
+            <input className="block w-full rounded-md bg-[#2D323F] px-3 py-2.5" type="text" name="title" id="title" required />
           </div>
           <div className="space-y-2 lg:space-y-3">
             <label htmlFor="description">Description</label>
@@ -51,34 +19,17 @@ export default function AddTaskModal({ onSave }) {
               type="text"
               name="description"
               id="description"
-              value={task.description}
-              onChange={handleChange}
               required
             ></textarea>
           </div>
           <div className="grid-cols-2 gap-x-4 max-md:space-y-9 md:grid lg:gap-x-10 xl:gap-x-20">
             <div className="space-y-2 lg:space-y-3">
               <label htmlFor="tags">Tags</label>
-              <input
-                className="block w-full rounded-md bg-[#2D323F] px-3 py-2.5"
-                type="text"
-                name="tags"
-                id="tags"
-                value={task.tags}
-                onChange={handleChange}
-                required
-              />
+              <input className="block w-full rounded-md bg-[#2D323F] px-3 py-2.5" type="text" name="tags" id="tags" required />
             </div>
             <div className="space-y-2 lg:space-y-3">
               <label htmlFor="priority">Priority</label>
-              <select
-                className="block w-full cursor-pointer rounded-md bg-[#2D323F] px-3 py-2.5"
-                name="priority"
-                id="priority"
-                value={task.priority}
-                onChange={handleChange}
-                required
-              >
+              <select className="block w-full cursor-pointer rounded-md bg-[#2D323F] px-3 py-2.5" name="priority" id="priority" required>
                 <option value="">Select Priority</option>
                 <option value="low">Low</option>
                 <option value="medium">Medium</option>
@@ -88,7 +39,7 @@ export default function AddTaskModal({ onSave }) {
           </div>
         </div>
         <div className="mt-16 flex justify-center lg:mt-20">
-          <button type="submit" className="rounded bg-blue-600 px-4 py-2 text-white transition-all hover:opacity-80" onClick={() => onSave(task)}>
+          <button type="submit" className="rounded bg-blue-600 px-4 py-2 text-white transition-all hover:opacity-80">
             Save
           </button>
         </div>
