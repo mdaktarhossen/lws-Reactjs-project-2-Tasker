@@ -16,15 +16,18 @@ export default function TaskBord() {
   const [tasks, setTask] = useState([defauldTask]);
   const [addTaskModal, setAddTaskModal] = useState(false);
 
-  const handleAddTask = (task) => {
-    setTask(task.title);
-    // console.log(task.title);
+  const handleAddTask = (newTask) => {
+    // setTask(task.title);
+    // console.log(task);
+    setTask([...tasks, newTask]);
+    setAddTaskModal(false);
   };
 
   return (
     <section className="mb-20" id="tasks">
-      {addTaskModal && <AddTaskModal onSave={handleAddTask} />}
       <div className="container">
+        {addTaskModal && <AddTaskModal onSave={handleAddTask} />}
+
         <div className="p-2 flex justify-end">
           <SearchTask />
         </div>
