@@ -1,4 +1,12 @@
-export default function SearchTask() {
+/* eslint-disable react/prop-types */
+import { useState } from "react";
+
+export default function SearchTask({ onSearch }) {
+  const [searchTerm, setSearchTerm] = useState("");
+  const handleClick = (event) => {
+    event.preventDefault();
+    onSearch(searchTerm);
+  };
   return (
     <form>
       <div className="flex">
@@ -8,9 +16,11 @@ export default function SearchTask() {
             id="search-dropdown"
             className="z-20 block w-full bg-gray-800 px-4 py-2 pr-10 focus:outline-none"
             placeholder="Search Task"
+            value={searchTerm}
+            onChange={() => setSearchTerm(event.target.value)}
             required
           />
-          <button type="submit" className="absolute right-2 top-0 h-full rounded-e-lg text-white md:right-4">
+          <button type="submit" className="absolute right-2 top-0 h-full rounded-e-lg text-white md:right-4" onClick={handleClick}>
             <svg className="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
               <path
                 stroke="currentColor"

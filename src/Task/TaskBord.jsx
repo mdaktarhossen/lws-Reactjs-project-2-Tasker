@@ -62,13 +62,20 @@ export default function TaskBord() {
     setTask(newTasks);
   };
 
+  const handleSearch = (searchTerm) => {
+    // this work can use reactUseEffet hooks
+    console.log(searchTerm);
+    const filtered = tasks.filter((task) => task.title.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()));
+    setTask([...filtered]);
+  };
+
   return (
     <section className="mb-20" id="tasks">
       <div className="container">
         {addTaskModal && <AddTaskModal onSave={handleAddEditTask} taskToUpdate={taskToUpdate} onCancel={handleCancel} />}
 
         <div className="p-2 flex justify-end">
-          <SearchTask />
+          <SearchTask onSearch={handleSearch} />
         </div>
         <div className="rounded-xl border border-[rgba(206,206,206,0.12)] bg-[#1D212B] px-6 py-8 md:px-9 md:py-16">
           <TastAction onAddTask={() => setAddTaskModal(true)} onDeleteAllTasks={handleOnDeleteAllTasks} />
