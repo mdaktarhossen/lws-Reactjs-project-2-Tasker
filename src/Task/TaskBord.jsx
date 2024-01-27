@@ -17,7 +17,7 @@ export default function TaskBord() {
   const [addTaskModal, setAddTaskModal] = useState(false);
   const [taskToUpdate, setTaskToUpdate] = useState(null);
 
-  const handleAddTask = (newTask, isAdd) => {
+  const handleAddEditTask = (newTask, isAdd) => {
     if (isAdd) {
       setTask([...tasks, newTask]);
     } else {
@@ -39,10 +39,15 @@ export default function TaskBord() {
     setAddTaskModal(true);
   };
 
+  const handleCancel = () => {
+    setAddTaskModal(false);
+    setTaskToUpdate(null);
+  };
+
   return (
     <section className="mb-20" id="tasks">
       <div className="container">
-        {addTaskModal && <AddTaskModal onSave={handleAddTask} taskToUpdate={taskToUpdate} />}
+        {addTaskModal && <AddTaskModal onSave={handleAddEditTask} taskToUpdate={taskToUpdate} onCancel={handleCancel} />}
 
         <div className="p-2 flex justify-end">
           <SearchTask />
