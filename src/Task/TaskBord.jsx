@@ -55,6 +55,13 @@ export default function TaskBord() {
     setTask([...tasks]);
   };
 
+  const handleIsFav = (taskId) => {
+    const taskIndex = tasks.findIndex((task) => task.id === taskId);
+    const newTasks = [...tasks];
+    newTasks[taskIndex].isFav = !newTasks[taskIndex].isFav;
+    setTask(newTasks);
+  };
+
   return (
     <section className="mb-20" id="tasks">
       <div className="container">
@@ -65,7 +72,7 @@ export default function TaskBord() {
         </div>
         <div className="rounded-xl border border-[rgba(206,206,206,0.12)] bg-[#1D212B] px-6 py-8 md:px-9 md:py-16">
           <TastAction onAddTask={() => setAddTaskModal(true)} onDeleteAllTasks={handleOnDeleteAllTasks} />
-          <TastLists tasks={tasks} onEdit={handleEditTask} onDelete={handleDeleteTask} />
+          <TastLists tasks={tasks} onEdit={handleEditTask} onDelete={handleDeleteTask} isFav={handleIsFav} />
         </div>
       </div>
     </section>

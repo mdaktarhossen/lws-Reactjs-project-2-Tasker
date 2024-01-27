@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { FaStar } from "react-icons/fa";
-export default function TastLists({ tasks, onEdit, onDelete }) {
+export default function TastLists({ tasks, onEdit, onDelete, isFav }) {
   return (
     <div className="overflow-auto">
       <table className="table-fixed overflow-auto xl:w-full">
@@ -18,7 +18,7 @@ export default function TastLists({ tasks, onEdit, onDelete }) {
           {tasks.map((task) => (
             <tr key={task.id} className="border-b border-[#2E3443] [&>td]:align-baseline [&>td]:px-4 [&>td]:py-2">
               <td>
-                <FaStar color="gray" />
+                <button onClick={() => isFav(task.id)}>{task.isFav ? <FaStar color="yellow" /> : <FaStar color="gray" />}</button>
               </td>
               <td> {task.title}</td>
               <td>
