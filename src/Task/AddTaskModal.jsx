@@ -2,18 +2,19 @@
 
 import { useState } from "react";
 
-export default function AddTaskModal({ onSave }) {
-  const [task, setTask] = useState({
-    id: crypto.randomUUID(),
-    title: "",
-    description: "",
-    tags: [],
-    priority: "",
-    isFav: false,
-  });
+export default function AddTaskModal({ onSave, taskToUpdate }) {
+  const [task, setTask] = useState(
+    taskToUpdate || {
+      id: crypto.randomUUID(),
+      title: "",
+      description: "",
+      tags: [],
+      priority: "",
+      isFav: false,
+    }
+  );
 
   const handleChange = (e) => {
-    // e.preventDefault();
     const name = e.target.name;
     let value = e.target.value;
     if (name === "tags") {
@@ -21,11 +22,13 @@ export default function AddTaskModal({ onSave }) {
     }
     setTask({ ...task, [name]: value });
   };
+
+  const [isAdd, setIsAdd] = useState(Object.is(taskToUpdate, null));
   return (
     <>
       <div className="bg-black bg-opacity-70 h-full w-full -z-10 absolute top-0 left-0"></div>
       <form className="z-10 top-1/4 left-1/4 absolute mx-auto my-10 w-full max-w-[740px] rounded-xl border border-[#FEFBFB]/[36%] bg-[#191D26] p-9 max-md:px-4 lg:my-20 lg:p-11">
-        <h2 className="mb-9 text-center text-2xl font-bold text-white lg:mb-11 lg:text-[28px]">Add New Task</h2>
+        <h2 className="mb-9 text-center text-2xl font-bold text-white lg:mb-11 lg:text-[28px]">{isAdd ? "Create New Task" : "Edit task"}</h2>
 
         <div className="space-y-9 text-white lg:space-y-10">
           <div className="space-y-2 lg:space-y-3">
@@ -84,7 +87,11 @@ export default function AddTaskModal({ onSave }) {
           </div>
         </div>
         <div className="mt-16 flex justify-center lg:mt-20">
-          <button type="button" className="rounded bg-blue-600 px-4 py-2 text-white transition-all hover:opacity-80" onClick={() => onSave(task)}>
+          <button
+            type="button"
+            className="rounded bg-blue-600 px-4 py-2 text-white transition-all hover:opacity-80"
+            onClick={() => onSave(task, isAdd)}
+          >
             Save
           </button>
         </div>
