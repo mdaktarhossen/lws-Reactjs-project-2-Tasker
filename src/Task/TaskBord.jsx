@@ -44,6 +44,17 @@ export default function TaskBord() {
     setTaskToUpdate(null);
   };
 
+  const handleDeleteTask = (taskId) => {
+    const tasksAfterDelete = tasks.filter((task) => task.id !== taskId);
+    console.log(tasksAfterDelete);
+    setTask(tasksAfterDelete);
+  };
+
+  const handleOnDeleteAllTasks = () => {
+    tasks.length = 0;
+    setTask([...tasks]);
+  };
+
   return (
     <section className="mb-20" id="tasks">
       <div className="container">
@@ -53,8 +64,8 @@ export default function TaskBord() {
           <SearchTask />
         </div>
         <div className="rounded-xl border border-[rgba(206,206,206,0.12)] bg-[#1D212B] px-6 py-8 md:px-9 md:py-16">
-          <TastAction onAddTask={() => setAddTaskModal(true)} />
-          <TastLists tasks={tasks} onEdit={handleEditTask} />
+          <TastAction onAddTask={() => setAddTaskModal(true)} onDeleteAllTasks={handleOnDeleteAllTasks} />
+          <TastLists tasks={tasks} onEdit={handleEditTask} onDelete={handleDeleteTask} />
         </div>
       </div>
     </section>
