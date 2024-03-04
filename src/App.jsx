@@ -1,7 +1,7 @@
+import TaskBord from "./COMPONENTS/TaskBord";
 import Footer from "./Footer";
 import Heder from "./Heder";
 import Hero from "./Hero";
-import TaskBord from "./Task/TaskBord";
 
 const App = () => {
   return (

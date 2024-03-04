@@ -22,7 +22,7 @@ export default function TastLists({ tasks }) {
               <td>{task.isfavorite ? <FaStar color="yellow" /> : <CiStar color="gray" />}</td>
               <td> {task.title}</td>
               <td>
-                <div>{task.Description}</div>
+                <div>{task.description}</div>
               </td>
               <td>
                 <ul className="flex justify-center gap-1.5 flex-wrap">
